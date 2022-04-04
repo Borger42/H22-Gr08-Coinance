@@ -61,3 +61,7 @@ def home (request):
 
 def aboutus (request):
     return render(request,'aboutus.html',{})
+
+
+def currency (request):
+    return render(request,'Currency.html',{})

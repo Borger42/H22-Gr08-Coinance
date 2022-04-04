@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+ {% load static %}
 <html lang="en">
 <head>
+
 <!-- basic -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,7 +59,8 @@
       <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
         <div class="full">
           <div class="center-desk">
-            <div class="logo"> <a href="home.html"><img src="../static/website/images/logo.jpg" alt="#"></a> </div>
+
+           <!-- <div class="logo"> <a href="home.html"><img src="{% static 'website/images/logo.jpg' %}" alt="#"></a> </div> !-->
           </div>
         </div>
       </div>
@@ -66,11 +69,11 @@
           <div class="limit-box">
             <nav class="main-menu">
               <ul class="menu-area-main">
-                <li class="active"> <a href="home.html">Home</a> </li>
-                <li> <a href="aboutus">About</a> </li>
-                <li> <a href="Currency.html"> Currency</a> </li>
-                <li> <a href="Team.html">Team</a> </li>
-                <li> <a href="contact.html">Contact us</a> </li>
+                <li class="active"> <a href="/home">Home</a> </li>
+                <li> <a href="/aboutus">About</a> </li>
+                <li> <a href="Currency"> Currency</a> </li>
+                <li> <a href="Team">Team</a> </li>
+                <li> <a href="contact">Contact us</a> </li>
                 <li> <a href="#"><img src="../static/website/images/search_icon.png" alt="#" /></a> </li>
               </ul>
             </nav>
