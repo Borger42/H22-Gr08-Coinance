@@ -1,14 +1,11 @@
 import pandas as pd
 import requests
-import matplotlib.pyplot as plt
-import numpy as np
 import plotly.graph_objects as go
 
-from django.shortcuts import render
+
 
 from django.http import HttpResponse
 
-from alpha_vantage.timeseries import TimeSeries
 
 API_key = '03QDMPDVX4N8GR4U'
 
