@@ -1,8 +1,7 @@
 import pandas as pd
 import requests
 import plotly.graph_objects as go
-
-
+from django.shortcuts import render
 
 from django.http import HttpResponse
 
@@ -56,3 +55,6 @@ def index(request): # http://127.0.0.1:8000
     html = html+graph
 
     return HttpResponse(html)
+
+def home (request):
+    return render(request,'home.html',{})
