@@ -58,3 +58,6 @@ def index(request): # http://127.0.0.1:8000
 
 def home (request):
     return render(request,'home.html',{})
+
+def aboutus (request):
+    return render(request,'aboutus.html',{})

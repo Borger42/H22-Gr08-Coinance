@@ -23,5 +23,7 @@ urlpatterns = [
     path('', include('myapp.urls')),
     path('admin/', admin.site.urls),
     path('home/', views.home, name="home"),
-
+    path('home/aboutus.html/', views.aboutus, name="aboutus"),
 ]
+
+
