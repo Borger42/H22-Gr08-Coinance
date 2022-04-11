@@ -11,10 +11,10 @@ API_key = '03QDMPDVX4N8GR4U'
 #   https://medium.com/codex/alpha-vantage-an-introduction-to-a-highly-efficient-free-stock-api-6d17f4481bf
 def get_monthly_data(symbol):
     api_key = '03QDMPDVX4N8GR4U'
-    api_url = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol={symbol}&apikey={api_key}'
+    api_url = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol={symbol}&apikey={api_key}'
     raw_df = requests.get(api_url).json()
 
-    df = pd.DataFrame(raw_df[f'Monthly Time Series']).T
+    df = pd.DataFrame(raw_df[f'Monthly Adjusted Time Series']).T
     df = df.rename(
         columns={'1. open': 'open', '2. high': 'high', '3. low': 'low', '4. close': 'close', '5. volume': 'volume'})
     for i in df.columns:
@@ -52,7 +52,8 @@ def index(request): # http://127.0.0.1:8000
 
     # html = data.to_html()
     html = "<h1>Yooooooooooooo<h1>"
-    html = html+graph
+
+    html = graph
 
     return HttpResponse(html)
 
@@ -71,3 +72,4 @@ def contact (request):
 
 def team (request):
     return render(request,'team.html',{})
+
