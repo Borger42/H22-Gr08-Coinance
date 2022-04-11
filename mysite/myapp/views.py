@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 import plotly.graph_objects as go
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
 
 from django.http import HttpResponse
 
@@ -73,4 +74,6 @@ def login (request):
     return render(request,'login.html',{})
 
 def register (request):
-    return render(request,'register.html',{})
+    form = UserCreationForm()
+    context={'form':form}
+    return render(request,'register.html',context)
