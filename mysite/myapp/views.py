@@ -1,14 +1,10 @@
 import pandas as pd
 import requests
-import matplotlib.pyplot as plt
-import numpy as np
 import plotly.graph_objects as go
-
 from django.shortcuts import render
 
 from django.http import HttpResponse
 
-from alpha_vantage.timeseries import TimeSeries
 
 API_key = '03QDMPDVX4N8GR4U'
 
@@ -59,3 +55,16 @@ def index(request): # http://127.0.0.1:8000
     html = html+graph
 
     return HttpResponse(html)
+
+def home (request):
+    return render(request,'home.html',{})
+
+def aboutus (request):
+    return render(request,'aboutus.html',{})
+
+
+def currency (request):
+    return render(request,'Currency.html',{})
+
+def contact (request):
+    return render(request,'contact.html',{})
