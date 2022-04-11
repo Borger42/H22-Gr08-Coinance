@@ -3,6 +3,8 @@ import requests
 import plotly.graph_objects as go
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
+from .models import *
+from .forms import CreateUserForm
 
 from django.http import HttpResponse
 
@@ -74,10 +76,10 @@ def login (request):
     return render(request,'login.html',{})
 
 def register (request):
-    form = UserCreationForm()
+    form = CreateUserForm()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
 
