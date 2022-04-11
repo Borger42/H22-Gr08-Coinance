@@ -16,7 +16,6 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls import url
 from myapp import views
 
 urlpatterns = [
@@ -26,7 +25,14 @@ urlpatterns = [
     path('aboutus/', views.aboutus, name="aboutus"),
     path('Currency/', views.currency, name="currency"),
     path('contact/', views.contact, name="contact"),
-    path('Team/',views.team, name ='contact')
+
+    path('Team/',views.team, name ='contact'),
+
+    path('login/', views.loginPage, name="login"),
+    path('logout/', views.loginPage, name="logout"),
+    path('register/', views.registerPage, name="register"),
+
+
 ]
 
 
