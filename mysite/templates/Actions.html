@@ -11,7 +11,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
-<title>Digitco</title>
+{% if symbole %}
+<title>{{symbole}}</title>
+{% else %}
+<title>Actions</title>
+{% endif %}
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -71,7 +75,7 @@
               <ul class="menu-area-main">
                 <li class="active"> <a href="home.html">Home</a> </li>
                 <li> <a href="aboutus.html">About</a> </li>
-                <li class="active"> <a href="Currency.html"> Currency</a> </li>
+                <li class="active"> <a href="Actions.html"> Actions</a> </li>
                 <li> <a href="Team.html">Team</a> </li>
                 <li> <a href="contact.html">Contact us</a> </li>
                 <li> <a href="#"><img src="../static/website/images/search_icon.png" alt="#" /></a> </li>
@@ -91,7 +95,7 @@
     <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="abouttitle">
-          <h2>Currency</h2>
+          <h2>Actions</h2>
         </div>
       </div>
     </div>
@@ -102,44 +106,17 @@
 <div class="Currency">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-10">
         <div class="titlepage">
-          <h2>NEED TO TAKE CARE OF YOUR <strong class="cur">CURRENCY INVESTMENTS</strong></h2>
+          <h2>DONNÉES POUR L'ACTION <strong class="cur">{{symbole}}</strong></h2>
           <span><img src="../static/website/images/boder.png" alt="img"/> </span> </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-        <div class="three-box">
-          <figure><img src="../static/website/images/1.jpg" alt="img"/></figure>
-          <div class="Bitcoin"> <i><img src="../static/website/images/dollar.png" alt="img"/></i>
-            <h3>Bitcoin Transaction</h3>
-            <p>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud lit esse </p>
-          </div>
-          <a class="read-more" href="#">Read More</a> </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-        <div class="three-box">
-          <figure><img src="../static/website/images/2.jpg" alt="img"/></figure>
-          <div class="Bitcoin"> <i><img src="../static/website/images/dollar.png" alt="img"/></i>
-            <h3>Bitcoin Exchange</h3>
-            <p>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-          </div>
-          <a class="read-more" href="#">Read More</a> </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-        <div class="three-box">
-          <figure><img src="../static/website/images/3.jpg" alt="img"/></figure>
-          <div class="Bitcoin"> <i><img src="../static/website/images/dollar.png" alt="img"/></i>
-            <h3>Bitcoin Investment</h3>
-            <p>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-          </div>
-          <a class="read-more" href="#">Read More</a> </div>
-      </div>
+      <div> {{graph | safe}} </div>
     </div>
   </div>
 </div>
-<!-- end Currency --> 
+<!-- end Currency -->
 
 <!-- footer -->
 <footer>

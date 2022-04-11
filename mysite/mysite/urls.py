@@ -16,7 +16,6 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls import url
 from myapp import views
 
 urlpatterns = [
@@ -24,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home, name="home"),
     path('aboutus/', views.aboutus, name="aboutus"),
-    path('Currency/', views.currency, name="currency"),
+    path('actions/<str:action>', views.Actions, name="actions"),
     path('contact/', views.contact, name="contact"),
 ]
 
