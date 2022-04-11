@@ -65,3 +65,6 @@ def aboutus (request):
 
 def currency (request):
     return render(request,'Currency.html',{})
+
+def contact (request):
+    return render(request,'contact.html',{})
