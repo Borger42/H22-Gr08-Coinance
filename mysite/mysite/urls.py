@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home, name="home"),
     path('aboutus/', views.aboutus, name="aboutus"),
-    path('Currency/', views.currency, name="currency"),
+    path('actions/<str:action>', views.Actions, name="actions"),
     path('contact/', views.contact, name="contact"),
     path('Team/',views.team, name ='contact'),
     path('login/', views.loginPage, name="login"),

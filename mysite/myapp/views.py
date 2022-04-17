@@ -50,7 +50,7 @@ def get_plot(data):
 
 def index(request): # http://127.0.0.1:8000
 
-    symbol = 'AAPL'
+    symbol = 'TSLA'
 
     data = get_monthly_data(symbol)
     graph = get_plot(data)
@@ -72,8 +72,11 @@ def aboutus (request):
     return render(request,'aboutus.html',{})
 
 
-def currency (request):
-    return render(request,'Currency.html',{})
+def Actions (request, action):
+    symbole = action.upper()
+    data = get_monthly_data(symbole)
+    graph = get_plot(data)
+    return render(request,'Actions.html',{'symbole' : symbole, 'graph' : graph})
 
 def contact (request):
     return render(request,'contact.html',{})
