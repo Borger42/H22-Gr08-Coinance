@@ -76,20 +76,17 @@
                 <li class="active"> <a href="/home">Home</a> </li>
                 <li> <a href="/aboutus">About</a> </li>
                 <li>
-                  <div class="dropdown">
-                    <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Actions
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
                 </li>
                 <li> <a href="/Team">Team</a> </li>
                 <li> <a href="/contact">Contact us</a> </li>
-                <li> <a href="#"><img src="../static/website/images/search_icon.png" alt="#" /></a> </li>
+                 <li> <a  </a> </li>
+                <li> <a href="#"><img src="../static/website/images/search_icon.png" alt="#" /></a>
+                <form class="d-flex" method=Post
+                action="{% url 'search_bar' %}">
+                <input class ="from-control me-2"
+                       type = "search" placeholder ="Search" aria-label ="Search">
+                </form>
+                </li>
               </ul>
             </nav>
           </div>

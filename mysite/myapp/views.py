@@ -125,3 +125,6 @@ def registerPage (request): #https://jsfiddle.net/ivanov11/hzf0jxLg/
 
         context = {'form': form}
         return render(request, 'register.html', context)
+
+def search_bar(request):
+    return render(request, 'search_bar.html',{})
