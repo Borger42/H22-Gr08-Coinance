@@ -81,13 +81,12 @@
                 <li> <a href="/contact">Contact us</a> </li>
                  <li> <a  </a> </li>
 
-                <li> <a href="#"><img src="../static/website/images/search_icon.png" alt="#" /></a>
-                <form class="d-flex" method=Post
-                action="{% url 'actions' searched %}">
+                <li> <img style="cursor:pointer" src="../static/website/images/search_icon.png" alt= "#" id="searchicon" />
+
                   {% csrf_token %}
                 <input class ="from-control me-2"
-                       type = "search" placeholder ="Search" aria-label ="Search" name="searched">
-                </form>
+                       id="search"  type = "search" placeholder ="Search" aria-label ="Search" name="searched">
+
                 </li>
               </ul>
             </nav>
@@ -181,5 +180,30 @@
 <!-- sidebar -->
 <script src="../static/website/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="../static/website/js/custom.js"></script>
+<script>
+
+$(document).ready(function(){
+$("#search").on('keyup', function (e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+  var x = e.target.value
+  var url = window.location.href
+  var test=url.split('actions')[0]
+test += `actions/${x}`;
+
+window.location.replace(test)
+    }
+});
+$("#searchicon").on('click', function (e) {
+
+  var x = $("#search").val()
+  var url = window.location.href
+  var test=url.split('actions')[0]
+test += `actions/${x}`;
+
+window.location.replace(test)
+
+});
+})
+</script>
 </body>
 </html>
