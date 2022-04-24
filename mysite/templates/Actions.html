@@ -80,11 +80,13 @@
                 <li> <a href="/Team">Team</a> </li>
                 <li> <a href="/contact">Contact us</a> </li>
                  <li> <a  </a> </li>
+
                 <li> <a href="#"><img src="../static/website/images/search_icon.png" alt="#" /></a>
                 <form class="d-flex" method=Post
-                action="{% url 'search_bar' %}">
+                action="{% url 'actions' searched %}">
+                  {% csrf_token %}
                 <input class ="from-control me-2"
-                       type = "search" placeholder ="Search" aria-label ="Search">
+                       type = "search" placeholder ="Search" aria-label ="Search" name="searched">
                 </form>
                 </li>
               </ul>

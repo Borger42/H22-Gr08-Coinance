@@ -1,5 +1,12 @@
+{% extends 'templ
 {% block content %}
     <center>
-        <h1>You searched for  </h1>
+        {% if searched %}
+             <h1>You searched for {{searched}} </h1>
+        {% else %}
+        <h1> Hey! You forgot to search</h1>
+
+        {% endif %}
     </center>
+
 {% endblock %}

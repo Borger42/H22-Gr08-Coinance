@@ -127,4 +127,21 @@ def registerPage (request): #https://jsfiddle.net/ivanov11/hzf0jxLg/
         return render(request, 'register.html', context)
 
 def search_bar(request):
-    return render(request, 'search_bar.html',{})
+    if request.method == "Post":
+        searched = request.Post('searched')
+
+        return render(request, 'search_bar.html', {'searched' :searched})
+
+    else:
+        return render(request, 'search_bar.html', {})
+
+def resultat (request):
+    if request.method =="Post":
+        searched = request.Post['searched']
+
+        return render(request,'search_bar.html',{})
+
+    else:
+        return render(request, 'search_bar.html', {})
+
+
