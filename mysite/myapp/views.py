@@ -126,6 +126,13 @@ def registerPage (request): #https://jsfiddle.net/ivanov11/hzf0jxLg/
         context = {'form': form}
         return render(request, 'register.html', context)
 
+def userPage(request):
+    products =Product.objects.all()
+
+
+    context = {'products':products}
+    return render(request, 'user.html', context)
+
 def search_bar(request):
     if request.method == "Post":
         searched = request.Post('searched')
