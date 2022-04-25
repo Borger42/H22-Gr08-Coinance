@@ -13,8 +13,8 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.http import HttpResponse
 
-
 API_key = '03QDMPDVX4N8GR4U'
+
 
 #   https://medium.com/codex/alpha-vantage-an-introduction-to-a-highly-efficient-free-stock-api-6d17f4481bf
 def get_monthly_data(symbol):
@@ -30,6 +30,7 @@ def get_monthly_data(symbol):
     df.index = pd.to_datetime(df.index)
     df = df.iloc[::-1]
     return df
+
 
 def get_weekly_data(symbol):
     api_key = '03QDMPDVX4N8GR4U'
@@ -59,6 +60,32 @@ def get_daily_data(symbol):
     df = df.iloc[::-1]
     return df
 
+
+def recherche_par_mot_cle(mot_cle):
+    api_key = '03QDMPDVX4N8GR4U'
+    api_url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={mot_cle}&apikey={api_key}'
+    raw_df = requests.get(api_url).json()
+    df = pd.DataFrame(raw_df['bestMatches'])
+    df = df.rename(
+        columns={'1. symbol': 'symbol',
+                 '2. name': 'name',
+                 '3. type': 'type',
+                 '4. region': 'region',
+                 '5. marketOpen': 'marketOpen',
+                 '6. marketClose': 'marketClose',
+                 '7. timezone': 'timezone',
+                 '8. currency': 'currency',
+                 '9. matchScore': 'matchScore'})
+    return df
+
+
+def resultat_to_html(df):
+    html = ''
+    for index, row in df.iterrows():
+        html += f'<h1> <a href="/actions/{row["symbol"]}">{row["name"]} : {row["symbol"]}    {row["region"]}    {row["currency"]}</a><h1>\n'
+    return html
+
+
 def get_plot(data):
     figure = go.Figure(
         data=[
@@ -76,44 +103,49 @@ def get_plot(data):
 
     return graph
 
-def index(request): # http://127.0.0.1:8000
+
+def index(request):  # http://127.0.0.1:8000
 
     symbol = 'TSLA'
 
     data = get_monthly_data(symbol)
     graph = get_plot(data)
 
-    #ts = TimeSeries(key=API_key)
-    #data1 = ts.get_monthly_adjusted('AAPL')
+    # ts = TimeSeries(key=API_key)
+    # data1 = ts.get_monthly_adjusted('AAPL')
 
     # html = data.to_html()
-    html = "<h1>Yooooooooooooo<h1>"
+    # html = "<h1>Yooooooooooooo<h1>"
 
     html = graph
 
     return HttpResponse(html)
 
-def home (request):
-    return render(request,'home.html',{})
 
-def aboutus (request):
-    return render(request,'aboutus.html',{})
+def home(request):
+    return render(request, 'home.html', {})
 
 
-def Actions (request, action):
+def aboutus(request):
+    return render(request, 'aboutus.html', {})
+
+
+def Actions(request, action):
     symbole = action.upper()
     data = get_monthly_data(symbole)
     graph = get_plot(data)
-    return render(request,'Actions.html',{'symbole' : symbole, 'graph' : graph})
-
-def contact (request):
-    return render(request,'contact.html',{})
+    return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
 
 
-def team (request):
-    return render(request,'team.html',{})
+def contact(request):
+    return render(request, 'contact.html', {})
 
-def loginPage (request): #https://jsfiddle.net/ivanov11/dghm5cu7/
+
+def team(request):
+    return render(request, 'team.html', {})
+
+
+def loginPage(request):  # https://jsfiddle.net/ivanov11/dghm5cu7/
     if request.user.is_authenticated:
         return redirect('home')
     else:
@@ -132,11 +164,13 @@ def loginPage (request): #https://jsfiddle.net/ivanov11/dghm5cu7/
         context = {}
         return render(request, 'login.html', context)
 
+
 def logoutUser(request):
     logout(request)
     return redirect('login')
 
-def registerPage (request): #https://jsfiddle.net/ivanov11/hzf0jxLg/
+
+def registerPage(request):  # https://jsfiddle.net/ivanov11/hzf0jxLg/
     if request.user.is_authenticated:
         return redirect('home')
     else:
@@ -153,6 +187,7 @@ def registerPage (request): #https://jsfiddle.net/ivanov11/hzf0jxLg/
 
         context = {'form': form}
         return render(request, 'register.html', context)
+
 
 def userPage(request):
     products =Product.objects.all()
@@ -175,22 +210,28 @@ def get_data_now(symbol):
 
     return df.to_html()
 
+
 def search_bar(request):
     if request.method == "Post":
         searched = request.Post('searched')
 
-        return render(request, 'search_bar.html', {'searched' :searched})
+        return render(request, 'search_bar.html', {'searched': searched})
 
     else:
         return render(request, 'search_bar.html', {})
 
-def resultat (request):
-    if request.method =="Post":
+
+def resultat(request):
+    if request.method == "Post":
         searched = request.Post['searched']
 
-        return render(request,'search_bar.html',{})
+        return render(request, 'search_bar.html', {})
 
     else:
         return render(request, 'search_bar.html', {})
 
 
+def search_page(request, mot_cle):
+    data = recherche_par_mot_cle(mot_cle)
+    resultats = resultat_to_html(data)
+    return render(request, 'Search_page.html', {'mot_cle': mot_cle, 'resultats': resultats})
