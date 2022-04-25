@@ -128,10 +128,24 @@ def registerPage (request): #https://jsfiddle.net/ivanov11/hzf0jxLg/
 
 def userPage(request):
     products =Product.objects.all()
-
-
     context = {'products':products}
     return render(request, 'user.html', context)
+
+
+def get_data_now(symbol):
+    api_key = '03QDMPDVX4N8GR4U'
+    api_url=f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}'
+    raw_df = requests.get(api_url).json()
+
+    df = pd.DataFrame(raw_df[f'Global Quote']).T
+    df = df.rename(
+        columns={'2. open': 'open', '3. high': 'high', '4. low': 'low', '5. price': 'price', '6. volume': 'volume'})
+    for i in df.columns:
+        df[i] = df[i].astype(float)
+    df.index = pd.to_datetime(df.index)
+    df = df.loc['open':'volume']
+
+    return df.to_html()
 
 def search_bar(request):
     if request.method == "Post":
