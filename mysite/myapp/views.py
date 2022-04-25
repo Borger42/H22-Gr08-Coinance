@@ -31,6 +31,34 @@ def get_monthly_data(symbol):
     df = df.iloc[::-1]
     return df
 
+def get_weekly_data(symbol):
+    api_key = '03QDMPDVX4N8GR4U'
+    api_url = f'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol={symbol}&apikey={api_key}'
+    raw_df = requests.get(api_url).json()
+
+    df = pd.DataFrame(raw_df[f'Weekly Adjusted Time Series']).T
+    df = df.rename(
+        columns={'1. open': 'open', '2. high': 'high', '3. low': 'low', '4. close': 'close', '5. volume': 'volume'})
+    for i in df.columns:
+        df[i] = df[i].astype(float)
+    df.index = pd.to_datetime(df.index)
+    df = df.iloc[::-1]
+    return df
+
+def get_daily_data(symbol):
+    api_key = '03QDMPDVX4N8GR4U'
+    api_url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}'
+    raw_df = requests.get(api_url).json()
+
+    df = pd.DataFrame(raw_df[f'Time Series (Daily)']).T
+    df = df.rename(
+        columns={'1. open': 'open', '2. high': 'high', '3. low': 'low', '4. close': 'close', '5. volume': 'volume'})
+    for i in df.columns:
+        df[i] = df[i].astype(float)
+    df.index = pd.to_datetime(df.index)
+    df = df.iloc[::-1]
+    return df
+
 def get_plot(data):
     figure = go.Figure(
         data=[
