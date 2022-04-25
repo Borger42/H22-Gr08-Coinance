@@ -7,16 +7,15 @@
         <div class="card card-body">
             <table class="table table-ms">
                 <tr>
-                    <th>Action</th>
-                    <th>Prix Actuel</th>
+                    <th>Product</th>
+                    <th>Price</th>
                 </tr>
 
-
-
+                {% for i in products %}
                 <tr>
-                    <td>{{action.nom}}</td>
-                    <td>{{action.prix}}</td>
+                    <td>{{i.name}}</td>
                 </tr>
+                {% endfor %}
             </table>
         </div>
     </div>
