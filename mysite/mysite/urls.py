@@ -28,7 +28,7 @@ urlpatterns = [
     path('contact/', views.contact, name="contact"),
     path('Team/',views.team, name ='team'),
     path('login/', views.loginPage, name="login"),
-    path('logout/', views.loginPage, name="logout"),
+    path('logout/', views.logoutUser, name="logout"),
     path('register/', views.registerPage, name="register"),
     path('search_bar', views.search_bar, name="search_bar"),
 ]
