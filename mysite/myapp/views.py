@@ -86,9 +86,9 @@ def team (request):
     return render(request,'team.html',{})
 
 def loginPage (request): #https://jsfiddle.net/ivanov11/dghm5cu7/
-    #if request.user.is_authenticated:
-        #return redirect('home')
-    #else:
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
         if request.method == 'POST':
             username = request.POST.get('username')
             password = request.POST.get('password')
@@ -109,9 +109,9 @@ def logoutUser(request):
     return redirect('login')
 
 def registerPage (request): #https://jsfiddle.net/ivanov11/hzf0jxLg/
-    #if request.user.is_authenticated:
-        #return redirect('home')
-    #else:
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
         form = CreateUserForm()
 
         if request.method == 'POST':
