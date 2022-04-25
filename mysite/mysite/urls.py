@@ -32,6 +32,7 @@ urlpatterns = [
     path('register/', views.registerPage, name="register"),
     path('user/', views.userPage, name="user"),
     path('search_bar', views.search_bar, name="search_bar"),
+    path('search/<str:mot_cle>', views.search_page, name="search_page"),
 ]
 
 
