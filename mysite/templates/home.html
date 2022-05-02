@@ -37,13 +37,6 @@
 <!-- end loader -->
 <!-- header -->
 <header>
-  <style>
-    .hello-msg{
-      font-size: 12px;
-      color: #fff;
-      margin-right: 20px;
-    }
-  </style>
   <!-- header inner -->
   <div class="head-top">
     <div class="container">
@@ -55,6 +48,13 @@
           <div class="icon"> <i> <a href="#"><img src="{%static '/website/icon/facebook.png'%}"></a></i> <i> <a href="#"><img src="{%static '/website/icon/Twitter.png'%}"></a></i> <i> <a href="#"><img src="{%static '/website/icon/linkedin.png'%}"></a></i> <i> <a href="#"><img src="{%static '/website/icon/google+.png'%}"></a></i> </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+          <style>
+            .hello-msg{
+              font-size: 12px;
+              color: #fff;
+              margin-right: 20px;
+            }
+          </style>
             <span class="hello-msg">Hello, {{request.user}}</span>
             <span class="hello-msg"><a href="{% url 'logout' %}">Logout</a> </span>
         </div>
