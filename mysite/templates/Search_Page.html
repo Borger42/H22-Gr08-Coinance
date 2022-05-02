@@ -114,11 +114,18 @@
     <div class="row">
       <div class="col-md-12">
         <div class="titlepage">
+          {% if resultats == '' %}
+          <h2>PAS DE RÉSULTATS POUR LA RECHERCHE: <strong class="cur">{{mot_cle}}</strong></h2>
+          <span><img src="../static/website/images/boder.png" alt="img"/> </span> </div>
+      </div>
+    </div>
+          {% else %}
           <h2>RÉSULTATS POUR LA RECHERCHE: <strong class="cur">{{mot_cle}}</strong></h2>
           <span><img src="../static/website/images/boder.png" alt="img"/> </span> </div>
       </div>
     </div>
       <div> {{resultats | safe}} </div>
+    {% endif %}
     </div>
   </div>
 </div>
@@ -221,8 +228,8 @@ $("#search").on('keyup', function (e) {
     if (e.key === 'Enter' || e.keyCode === 13) {
   var x = e.target.value
   var url = window.location.href
-  var test=url.split('actions')[0]
-test += `actions/${x}`;
+  var test=url.split('search')[0]
+test += `search/${x}`;
 
 window.location.replace(test)
     }
@@ -231,8 +238,8 @@ $("#searchicon").on('click', function (e) {
 
   var x = $("#search").val()
   var url = window.location.href
-  var test=url.split('actions')[0]
-test += `actions/${x}`;
+  var test=url.split('search')[0]
+test += `search/${x}`;
 
 window.location.replace(test)
 
