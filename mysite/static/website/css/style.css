@@ -1466,31 +1466,6 @@ input[type="checkbox"] .styled:checked+label::after, input[type="radio"] .styled
 .Currency .three-box figure img {
 	width: 100%;
 }
-.Currency .three-box .Bitcoin {
-	position: relative;
-	margin-top: -60px !important;
-	text-align: center;
-	box-shadow: #ddd 0px 1px 1px 1px;
-	background-color: #fff;
-	padding: 0px 20px 26px 20px;
-	margin: 0 auto;
-	width: 310px;
-}
-.Currency .three-box .Bitcoin i img {
-	margin-top: -36px;
-}
-.Currency .three-box .Bitcoin p {
-	padding-top: 20px;
-	font-size: 15px;
-	line-height: 23px;
-	color: #3e3c3c;
-}
-.Currency .three-box .Bitcoin h3 {
-	font-size: 27px;
-	line-height: 32px;
-	font-weight: 500;
-	padding-top: 10px;
-}
 .Currency .three-box .read-more {
 	padding: 11px 20px;
 	background-color: #000;

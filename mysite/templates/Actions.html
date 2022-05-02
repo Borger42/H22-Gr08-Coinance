@@ -108,7 +108,7 @@
   </div>
 </div>
 
-<!-- Currency -->
+<!-- Action -->
 <div class="Currency">
   <div class="container">
     <div class="row">
@@ -118,11 +118,11 @@
           <span><img src="../static/website/images/boder.png" alt="img"/> </span> </div>
       </div>
     </div>
-      <div> {{graph | safe}} </div>
-    </div>
   </div>
+  <div> {{graph | safe}} </div>
 </div>
-<!-- end Currency -->
+
+<!-- end Action -->
 
 <!-- footer -->
 <footer>
@@ -191,7 +191,7 @@ $("#search").on('keyup', function (e) {
   var x = e.target.value
   var url = window.location.href
   var test=url.split('actions')[0]
-test += `actions/${x}`;
+test += `search/${x}`;
 
 window.location.replace(test)
     }
@@ -201,7 +201,7 @@ $("#searchicon").on('click', function (e) {
   var x = $("#search").val()
   var url = window.location.href
   var test=url.split('actions')[0]
-test += `actions/${x}`;
+test += `search/${x}`;
 
 window.location.replace(test)
 
