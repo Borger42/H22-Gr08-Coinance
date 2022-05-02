@@ -136,11 +136,13 @@ def ActionsDaily(request, action):
     graph = get_plot(data)
     return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
 
+
 def ActionsWeekly(request, action):
     symbole = action.upper()
     data = get_weekly_data(symbole)
     graph = get_plot(data)
     return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
+
 
 def ActionsMonthly(request, action):
     symbole = action.upper()

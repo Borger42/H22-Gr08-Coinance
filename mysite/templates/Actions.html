@@ -117,6 +117,9 @@
           <h2>DONNÉES POUR L'ACTION <strong class="cur">{{symbole}}</strong></h2>
           <span><img src="../static/website/images/boder.png" alt="img"/> </span> </div>
       </div>
+      <button onclick="location.href = '/actions/daily/{{symbole}}'">Daily</button>
+      <button onclick="location.href = '/actions/weekly/{{symbole}}'">Weekly</button>
+      <button onclick="location.href = '/actions/monthly/{{symbole}}'">Monthly</button>
     </div>
       <div> {{graph | safe}} </div>
     </div>
