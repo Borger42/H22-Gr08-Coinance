@@ -11,23 +11,3 @@
 <span class="hello-msg"><a href="{% url 'logout' %}">Logout</a> </span>
 
 
-<div class="row">
-    <div class="col-md">
-        <div class="card card-body">
-            <table class="table table-ms">
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                </tr>
-
-                {% for i in products %}
-                <tr>
-                    <td>{{i.name}}</td>
-                    <td></td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </div>
-</div>
-
