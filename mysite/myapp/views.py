@@ -130,7 +130,21 @@ def aboutus(request):
     return render(request, 'aboutus.html', {})
 
 
-def Actions(request, action):
+def ActionsDaily(request, action):
+    symbole = action.upper()
+    data = get_daily_data(symbole)
+    graph = get_plot(data)
+    return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
+
+
+def ActionsWeekly(request, action):
+    symbole = action.upper()
+    data = get_weekly_data(symbole)
+    graph = get_plot(data)
+    return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
+
+
+def ActionsMonthly(request, action):
     symbole = action.upper()
     data = get_monthly_data(symbole)
     graph = get_plot(data)

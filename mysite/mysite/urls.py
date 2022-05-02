@@ -24,7 +24,10 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('home/', views.home, name="home"),
     path('aboutus/', views.aboutus, name="aboutus"),
-    path('actions/<str:action>', views.Actions, name="actions"),
+    path('actions/<str:action>', views.ActionsMonthly, name="actions"),
+    path('actions/daily/<str:action>', views.ActionsDaily, name="actionsdaily"),
+    path('actions/weekly/<str:action>', views.ActionsWeekly, name="actionsweekly"),
+    path('actions/monthly/<str:action>', views.ActionsMonthly, name="actionsmonthly"),
     path('contact/', views.contact, name="contact"),
     path('Team/',views.team, name ='team'),
     path('login/', views.loginPage, name="login"),
@@ -33,6 +36,7 @@ urlpatterns = [
     path('user/', views.userPage, name="user"),
     path('search_bar', views.search_bar, name="search_bar"),
     path('search/<str:mot_cle>', views.search_page, name="search_page"),
+
 ]
 
 

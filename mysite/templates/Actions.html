@@ -55,7 +55,15 @@
           <div class="icon"> <i> <a href="#"><img src="../static/website/icon/facebook.png"></a></i> <i> <a href="#"><img src="../static/website/icon/Twitter.png"></a></i> <i> <a href="#"><img src="../static/website/icon/linkedin.png"></a></i> <i> <a href="#"><img src="../static/website/icon/google+.png"></a></i> </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-          <div class="contact"> <a href="#">Contact :  +71  78908540</a> </div>
+          <style>
+            .hello-msg{
+              font-size: 12px;
+              color: #fff;
+              margin-right: 20px;
+            }
+          </style>
+            <span class="hello-msg">Hello, {{request.user}}</span>
+            <span class="hello-msg"><a href="{% url 'logout' %}">Logout</a> </span>
         </div>
       </div>
     </div>
@@ -108,7 +116,11 @@
   </div>
 </div>
 
+
 <!-- Action -->
+
+
+<!-- Currency -->
 <div class="Currency">
   <div class="container">
     <div class="row">
@@ -116,6 +128,18 @@
         <div class="titlepage">
           <h2>DONNÉES POUR L'ACTION <strong class="cur">{{symbole}}</strong></h2>
           <span><img src="../static/website/images/boder.png" alt="img"/> </span> </div>
+      </div>
+      <div>
+        <style>
+          .bouton {
+              width: 100px;
+              color: #fff;
+              background: #ad2100;
+          }
+        </style>
+        <button class="bouton" onclick="location.href = '/actions/daily/{{symbole}}'">Daily</button>
+        <button class="bouton" onclick="location.href = '/actions/weekly/{{symbole}}'">Weekly</button>
+        <button class="bouton" onclick="location.href = '/actions/monthly/{{symbole}}'">Monthly</button>
       </div>
     </div>
   </div>
