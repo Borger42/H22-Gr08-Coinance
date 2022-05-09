@@ -82,7 +82,7 @@ def recherche_par_mot_cle(mot_cle):
 def resultat_to_html(df):
     html = ''
     for index, row in df.iterrows():
-        html += f'<h1> <a href="/actions/{row["symbol"]}">{row["name"]} : {row["symbol"]}    {row["region"]}    {row["currency"]}</a><h1>\n'
+        html += f'<h1> <button onclick= "location.href=\'/actions/{row["symbol"]}\'">{row["name"]} : {row["symbol"]}    {row["region"]}    {row["currency"]}</button><h1>'
     return html
 
 
@@ -249,3 +249,22 @@ def search_page(request, mot_cle):
     data = recherche_par_mot_cle(mot_cle)
     resultats = resultat_to_html(data)
     return render(request, 'Search_page.html', {'mot_cle': mot_cle, 'resultats': resultats})
+
+
+def calculateur(request):
+    # data = recherche_par_mot_cle(mot_cle)
+    # resultats = resultat_to_html(data)
+    return render(request, 'Calculateur.html')
+# , {'mot_cle': mot_cle, 'resultats': resultats}
+
+
+def calculer_profits(actions, dates):
+    achat = 0
+    vente = 0
+    for i in range(len(actions)):
+        data = get_monthly_data(actions[i])
+        achat += data[dates[i]]["close"]
+        data_now = get_data_now(actions[i])
+        vente += data_now["close"]
+    profits = vente - achat
+    return profits

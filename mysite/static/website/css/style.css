@@ -1444,7 +1444,6 @@ input[type="checkbox"] .styled:checked+label::after, input[type="radio"] .styled
 }
 .Currency .titlepage {
 	text-align: center;
-	padding-bottom: 65px;
 }
 .Currency .titlepage h2 {
 	font-weight: 500;
@@ -1479,6 +1478,7 @@ input[type="checkbox"] .styled:checked+label::after, input[type="radio"] .styled
 .Currency .three-box .read-more:hover {
 	background-color: #ad2100;
 }
+
 .abouts {
 	display: flow-root;
 	background: #fff;
