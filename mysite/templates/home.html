@@ -326,21 +326,17 @@ $(document).ready(function(){
 $("#search").on('keyup', function (e) {
     if (e.key === 'Enter' || e.keyCode === 13) {
   var x = e.target.value
-  var url = window.location.href
-  var test=url.split('home')[0]
-test += `search/${x}`;
+  var url=`http://127.0.0.1:8000/search/${x}`;
 
-window.location.replace(test)
+window.location.replace(url)
     }
 });
 $("#searchicon").on('click', function (e) {
 
   var x = $("#search").val()
-  var url = window.location.href
-  var test=url.split('home')[0]
-test += `search/${x}`;
+  var url = `http://127.0.0.1:8000/search/${x}`;
 
-window.location.replace(test)
+window.location.replace(url)
 
 });
 })
