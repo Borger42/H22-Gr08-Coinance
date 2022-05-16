@@ -82,14 +82,29 @@ def recherche_par_mot_cle(mot_cle):
 def resultat_to_html(df):
     html = ''
     for index, row in df.iterrows():
-        html += f'<h1> <a href="/actions/{row["symbol"]}">{row["name"]} : {row["symbol"]}    {row["region"]}    {row["currency"]}</a><h1>\n'
+        html += f'<h1> <button onclick= "location.href=\'/actions/{row["symbol"]}\'">{row["name"]} : {row["symbol"]}    {row["region"]}    {row["currency"]}</button><h1>'
     return html
 
 
-def get_plot(data):
+def sma_action(symbol, interval):
+    api_key = '03QDMPDVX4N8GR4U'
+    api_url = f'https://www.alphavantage.co/query?function=SMA&symbol={symbol}&interval={interval}&time_period=10&series_type=open&apikey={api_key}'
+    raw_df = requests.get(api_url).json()
+
+    df = pd.DataFrame(raw_df[f'Technical Analysis: SMA']).T
+    for i in df.columns:
+        df[i] = df[i].astype(float)
+    df.index = pd.to_datetime(df.index)
+    df = df.iloc[::-1]
+    return df
+
+
+
+def get_plot(data, sma):
     figure = go.Figure(
         data=[
             go.Candlestick(
+                name="Action",
                 x=data.index,
                 open=data['open'],
                 high=data['high'],
@@ -97,6 +112,15 @@ def get_plot(data):
                 close=data['close']
             )
         ]
+    )
+    figure.add_trace(
+        go.Scatter(
+            name="SMA",
+            x=sma.index,
+            y=sma['SMA'],
+            mode='lines',
+            line_color="blue"
+        )
     )
 
     graph = figure.to_html()
@@ -133,21 +157,24 @@ def aboutus(request):
 def ActionsDaily(request, action):
     symbole = action.upper()
     data = get_daily_data(symbole)
-    graph = get_plot(data)
+    sma = sma_action(symbole, 'daily')
+    graph = get_plot(data, sma)
     return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
 
 
 def ActionsWeekly(request, action):
     symbole = action.upper()
     data = get_weekly_data(symbole)
-    graph = get_plot(data)
+    sma = sma_action(symbole, 'weekly')
+    graph = get_plot(data, sma)
     return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
 
 
 def ActionsMonthly(request, action):
     symbole = action.upper()
     data = get_monthly_data(symbole)
-    graph = get_plot(data)
+    sma = sma_action(symbole, 'monthly')
+    graph = get_plot(data, sma)
     return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
 
 
@@ -249,3 +276,22 @@ def search_page(request, mot_cle):
     data = recherche_par_mot_cle(mot_cle)
     resultats = resultat_to_html(data)
     return render(request, 'Search_page.html', {'mot_cle': mot_cle, 'resultats': resultats})
+
+
+def calculateur(request):
+    # data = recherche_par_mot_cle(mot_cle)
+    # resultats = resultat_to_html(data)
+    return render(request, 'Calculateur.html')
+# , {'mot_cle': mot_cle, 'resultats': resultats}
+
+
+def calculer_profits(actions, dates):
+    achat = 0
+    vente = 0
+    for i in range(len(actions)):
+        data = get_monthly_data(actions[i])
+        achat += data[dates[i]]["close"]
+        data_now = get_data_now(actions[i])
+        vente += data_now["close"]
+    profits = vente - achat
+    return profits

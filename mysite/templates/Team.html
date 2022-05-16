@@ -78,10 +78,12 @@
               <ul class="menu-area-main">
                 <li > <a href="/home">Home</a> </li>
                 <li> <a href="/aboutus">About</a> </li>
-                <li> <a href="/actions/tsla"> Actions</a> </li>
                 <li class="active"> <a href="/Team">Team</a> </li>
                 <li> <a href="/contact">Contact us</a> </li>
-                <li> <a href="#"><img src="{%static '/website/images/search_icon.png'%}" alt="#" /></a> </li>
+                <li> <img style="cursor:pointer" src="../static/website/images/search_icon.png" alt= "#" id="searchicon"/>
+                  {% csrf_token %}
+                <input class ="from-control me-2"
+                       id="search"  type = "search" placeholder ="Rechercher des actions" aria-label ="Search" name="searched"> </li>
               </ul>
             </nav>
           </div>
@@ -98,7 +100,7 @@
     <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="abouttitle">
-          <h2>our Team</h2>
+          <h2>Notre Équipe</h2>
         </div>
       </div>
     </div>
@@ -140,8 +142,8 @@
         </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
           <div class="experts-threebox">
-            <figure><img src="{%static '/website/images/experts-3.jpg'%}" alt="img"/></figure>
-            <h3>antonio conte </h3>
+            <figure><img src="{%static '/website/images/Lucas.jpg'%}" alt="img"/></figure>
+            <h3>Lucas Thibodeau </h3>
             <span>Money Developer</span>
             <p>exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
             <div class="icon"> <i> <a href="#"><img src="{%static '/website/images/facebook.png'%}"></a></i> <i> <a href="#"><img src="{%static '/website/images/Twitter.png'%}"></a></i> <i> <a href="#"><img src="{%static '/website/images/linkedin.png'%}"></a></i> <i> <a href="#"><img src="{%static '/website/images/instagram.png'%}"></a></i> </div>
@@ -204,5 +206,26 @@
 <!-- sidebar -->
 <script src="{%static '/website/js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
 <script src="{%static '/website/js/custom.js'%}"></script>
+<script>
+
+$(document).ready(function(){
+$("#search").on('keyup', function (e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+  var x = e.target.value
+  var url=`http://127.0.0.1:8000/search/${x}`;
+
+window.location.replace(url)
+    }
+});
+$("#searchicon").on('click', function (e) {
+
+  var x = $("#search").val()
+  var url = `http://127.0.0.1:8000/search/${x}`;
+
+window.location.replace(url)
+
+});
+})
+</script>
 </body>
 </html>

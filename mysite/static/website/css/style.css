@@ -1444,7 +1444,6 @@ input[type="checkbox"] .styled:checked+label::after, input[type="radio"] .styled
 }
 .Currency .titlepage {
 	text-align: center;
-	padding-bottom: 65px;
 }
 .Currency .titlepage h2 {
 	font-weight: 500;
@@ -1479,10 +1478,37 @@ input[type="checkbox"] .styled:checked+label::after, input[type="radio"] .styled
 .Currency .three-box .read-more:hover {
 	background-color: #ad2100;
 }
+
+#Calculatrice {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#Calculatrice td, #Calculatrice th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#Calculatrice th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+span.Calcul {
+    display: inline-block;
+    width: 100px;
+    height: 20px;
+    padding: 5px;
+}
+
 .abouts {
 	display: flow-root;
 	background: #fff;
 }
+
 .abouts .abouts-bg .abouts-us h3 {
 	font-size: 40px;
 	line-height: 72px;

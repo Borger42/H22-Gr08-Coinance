@@ -36,6 +36,7 @@ urlpatterns = [
     path('user/', views.userPage, name="user"),
     path('search_bar', views.search_bar, name="search_bar"),
     path('search/<str:mot_cle>', views.search_page, name="search_page"),
+    path('calculateur/', views.calculateur, name="search_page"),
 
 ]
 

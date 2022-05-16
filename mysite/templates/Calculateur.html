@@ -11,11 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
-{% if mot_cle %}
-<title>Recherche - {{mot_cle}}</title>
-{% else %}
-<title>Recherche - Erreur</title>
-{% endif %}
+<title>Coinance - Calculateur</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -33,7 +29,12 @@
 <!--[if lt IE 9]>
       <script src="../static/website/https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="../static/website/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
+<!--scriptsCalculatrice-->
+<!--  <script>-->
+<!--    function calculer(){-->
+<!--      views.py.calculer_profits(...)-->
+<!--    }-->
+<!--  </script>-->
 </head>
 <!-- body -->
 <body class="main-layout">
@@ -88,11 +89,11 @@
                 </li>
                 <li> <a href="/Team">Team</a> </li>
                 <li> <a href="/contact">Contact us</a> </li>
+                <li> <a href="/calculateur">Calculateur</a> </li>
                 <li> <img style="cursor:pointer" src="../static/website/images/search_icon.png" alt= "#" id="searchicon"/>
                   {% csrf_token %}
                 <input class ="from-control me-2"
-                       id="search"  type = "search" placeholder ="Rechercher des actions" aria-label ="Search" name="searched"> </li>
-
+                       id="search"  type = "search" placeholder ="Search" aria-label ="Search" name="searched"> </li>
               </ul>
             </nav>
           </div>
@@ -109,35 +110,45 @@
     <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="abouttitle">
-          <h2>Recherche</h2>
+          <h2>Calculateur</h2>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Corps Recherche -->
+<!-- Calculateur -->
 <div class="Currency">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="titlepage">
-          {% if resultats == '' %}
-          <h2>PAS DE RÉSULTATS POUR LA RECHERCHE: <strong class="cur">{{mot_cle}}</strong></h2>
+          <h2>Calculateur de profits</h2>
           <span><img src="../static/website/images/boder.png" alt="img"/> </span> </div>
       </div>
-    </div>
-          {% else %}
-          <h2>RÉSULTATS POUR LA RECHERCHE: <strong class="cur">{{mot_cle}}</strong></h2>
-          <span><img src="../static/website/images/boder.png" alt="img"/> </span> </div>
-      </div>
-    </div>
-      <div> {{resultats | safe}} </div>
-    {% endif %}
+      <table id="Calculatrice">
+        <tr>
+          <th>Symbole</th>
+          <th>Date d'achat</th>
+          <th>Quantité</th>
+        </tr>
+        <tr>
+          <td><span class="Calcul"> <input type="text" name="Symbole"> </span></td>
+          <td><span class="Calcul"> <input type="date" id="date-achat" name="date-achat" min="2000-01-01" max="2022-12-31"> </span></td>
+          <td><span class="Calcul"> <input type="text" name="quantite"> </span></td>
+          <td><span class="Calcul"> <button type="submit">Ajouter</button> </span></td>
+        </tr>
+<!--        <tr>-->
+<!--          <td><span class="Calcul"> <input type="text" name="Symbole"> </span></td>-->
+<!--          <td><span class="Calcul"> <input type="date" id="achat" name="date-achat" min="2000-01-01" max="2022-12-31"> </span></td>-->
+<!--          <td><span class="Calcul"> <input type="text" name="quantite"> </span></td>-->
+<!--          <td><span class="Calcul"> <button type="submit">Ajouter</button> </span></td>-->
+<!--        </tr>-->
+      </table>
     </div>
   </div>
 </div>
-<!-- end Corps Recherche -->
+<!-- end Calculateur -->
 
 <!-- footer -->
 <footer>
@@ -193,37 +204,6 @@
 <script src="../static/website/js/popper.min.js"></script>
 <script src="../static/website/js/bootstrap.bundle.min.js"></script>
 <script src="../static/website/js/plugin.js"></script>
-  <script>
-     $( function() {
-      var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $("#search").autocomplete({
-      source: availableTags
-     });
-     } );
-  </script>
 
 
 <!-- sidebar -->
