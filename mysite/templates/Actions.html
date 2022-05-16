@@ -92,7 +92,6 @@
                   {% csrf_token %}
                 <input class ="from-control me-2"
                        id="search"  type = "search" placeholder ="Rechercher des actions" aria-label ="Search" name="searched"> </li>
-
               </ul>
             </nav>
           </div>
@@ -140,6 +139,7 @@
         <button class="bouton" onclick="location.href = '/daily/{{symbole}}'">Daily</button>
         <button class="bouton" onclick="location.href = '/weekly/{{symbole}}'">Weekly</button>
         <button class="bouton" onclick="location.href = '/monthly/{{symbole}}'">Monthly</button>
+
       </div>
     </div>
   </div>
