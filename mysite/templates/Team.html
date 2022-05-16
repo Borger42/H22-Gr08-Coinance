@@ -78,10 +78,12 @@
               <ul class="menu-area-main">
                 <li > <a href="/home">Home</a> </li>
                 <li> <a href="/aboutus">About</a> </li>
-                <li> <a href="/actions/tsla"> Actions</a> </li>
                 <li class="active"> <a href="/Team">Team</a> </li>
                 <li> <a href="/contact">Contact us</a> </li>
-                <li> <a href="#"><img src="{%static '/website/images/search_icon.png'%}" alt="#" /></a> </li>
+                <li> <img style="cursor:pointer" src="../static/website/images/search_icon.png" alt= "#" id="searchicon"/>
+                  {% csrf_token %}
+                <input class ="from-control me-2"
+                       id="search"  type = "search" placeholder ="Rechercher des actions" aria-label ="Search" name="searched"> </li>
               </ul>
             </nav>
           </div>
@@ -204,5 +206,26 @@
 <!-- sidebar -->
 <script src="{%static '/website/js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
 <script src="{%static '/website/js/custom.js'%}"></script>
+<script>
+
+$(document).ready(function(){
+$("#search").on('keyup', function (e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+  var x = e.target.value
+  var url=`http://127.0.0.1:8000/search/${x}`;
+
+window.location.replace(url)
+    }
+});
+$("#searchicon").on('click', function (e) {
+
+  var x = $("#search").val()
+  var url = `http://127.0.0.1:8000/search/${x}`;
+
+window.location.replace(url)
+
+});
+})
+</script>
 </body>
 </html>
