@@ -91,7 +91,7 @@ def sma_action(symbol, interval):
     api_url = f'https://www.alphavantage.co/query?function=SMA&symbol={symbol}&interval={interval}&time_period=10&series_type=open&apikey={api_key}'
     raw_df = requests.get(api_url).json()
 
-    df = pd.DataFrame(raw_df[f'SMA']).T
+    df = pd.DataFrame(raw_df[f'Technical Analysis: SMA']).T
     for i in df.columns:
         df[i] = df[i].astype(float)
     df.index = pd.to_datetime(df.index)
@@ -104,6 +104,7 @@ def get_plot(data, sma):
     figure = go.Figure(
         data=[
             go.Candlestick(
+                name="Action",
                 x=data.index,
                 open=data['open'],
                 high=data['high'],
@@ -114,10 +115,14 @@ def get_plot(data, sma):
     )
     figure.add_trace(
         go.Scatter(
-            y=data['SMA'],
-            mode='lines'
+            name="SMA",
+            x=sma.index,
+            y=sma['SMA'],
+            mode='lines',
+            line_color="blue"
         )
     )
+
     graph = figure.to_html()
 
     return graph
