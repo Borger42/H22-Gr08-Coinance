@@ -17,7 +17,7 @@ API_key = '03QDMPDVX4N8GR4U'
 
 
 #   https://medium.com/codex/alpha-vantage-an-introduction-to-a-highly-efficient-free-stock-api-6d17f4481bf
-def get_monthly_data(symbol):
+def get_monthly_data(symbol): #pour afficher des données par mois (chaque chandelle représente 1 mois)
     api_key = '03QDMPDVX4N8GR4U'
     api_url = f'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol={symbol}&apikey={api_key}'
     raw_df = requests.get(api_url).json()
@@ -32,7 +32,7 @@ def get_monthly_data(symbol):
     return df
 
 
-def get_weekly_data(symbol):
+def get_weekly_data(symbol): #pour afficher des données par semaine (chaque chandelle représente 1 semaine)
     api_key = '03QDMPDVX4N8GR4U'
     api_url = f'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol={symbol}&apikey={api_key}'
     raw_df = requests.get(api_url).json()
@@ -46,7 +46,7 @@ def get_weekly_data(symbol):
     df = df.iloc[::-1]
     return df
 
-def get_daily_data(symbol):
+def get_daily_data(symbol): #pour afficher des données par jour (chaque chandelle représente 1 jour)
     api_key = '03QDMPDVX4N8GR4U'
     api_url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}'
     raw_df = requests.get(api_url).json()
@@ -61,7 +61,7 @@ def get_daily_data(symbol):
     return df
 
 
-def recherche_par_mot_cle(mot_cle):
+def recherche_par_mot_cle(mot_cle):#résultats de la barre recherche (pour nous donner le nom des actions selon le meilleur résultat trouvé)
     api_key = '03QDMPDVX4N8GR4U'
     api_url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={mot_cle}&apikey={api_key}'
     raw_df = requests.get(api_url).json()
@@ -97,10 +97,10 @@ def resultat_to_html(df):
     df.index = pd.to_datetime(df.index)
     df = df.iloc[::-1]
     return df
-"""
+""" #c'est un indicateur d'analyse technique
 
 
-def get_plot(data):
+def get_plot(data): #pour traduire les données en chandelles
     figure = go.Figure(
         data=[
             go.Candlestick(
@@ -113,7 +113,7 @@ def get_plot(data):
             )
         ]
     )
-    """
+    """ #indicateur qui nous causait de sbugs
     figure.add_trace(
         go.Scatter(
             name="SMA",
@@ -125,12 +125,12 @@ def get_plot(data):
     )
 """
 
-    graph = figure.to_html()
+    graph = figure.to_html() #afficher un graphique
 
     return graph
 
 
-def index(request):  # http://127.0.0.1:8000
+def index(request):  # http://127.0.0.1:8000 #retourner le graphique pour l'afficher dans notre page actions
 
     symbol = 'TSLA'
 
@@ -141,14 +141,12 @@ def index(request):  # http://127.0.0.1:8000
     # data1 = ts.get_monthly_adjusted('AAPL')
 
     # html = data.to_html()
-    # html = "<h1>Yooooooooooooo<h1>"
-
     html = graph
 
     return HttpResponse(html)
 
 
-def home(request):
+def home(request): #méthode qui retourne l'affichage de la page web
     return render(request, 'home.html', {})
 
 
@@ -156,7 +154,7 @@ def aboutus(request):
     return render(request, 'aboutus.html', {})
 
 
-def ActionsDaily(request, action):
+def ActionsDaily(request, action): #méthode qui retourne les données/jour
     symbole = action.upper()
     data = get_daily_data(symbole)
    # sma = sma_action(symbole, 'daily')
@@ -188,7 +186,7 @@ def team(request):
     return render(request, 'team.html', {})
 
 
-def loginPage(request):  # https://jsfiddle.net/ivanov11/dghm5cu7/
+def loginPage(request):  # https://jsfiddle.net/ivanov11/dghm5cu7/ #permet de se connecter à son propre compte
     if request.user.is_authenticated:
         return redirect('home')
     else:
@@ -213,7 +211,7 @@ def logoutUser(request):
     return redirect('login')
 
 
-def registerPage(request):  # https://jsfiddle.net/ivanov11/hzf0jxLg/
+def registerPage(request):  # https://jsfiddle.net/ivanov11/hzf0jxLg/ #pour pouvoir créer un compte
     if request.user.is_authenticated:
         return redirect('home')
     else:
@@ -238,7 +236,7 @@ def userPage(request):
     return render(request, 'user.html', context)
 
 
-def get_data_now(symbol):
+def get_data_now(symbol): #get informations actuelles (les prix)
     api_key = '03QDMPDVX4N8GR4U'
     api_url=f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}'
     raw_df = requests.get(api_url).json()
@@ -254,7 +252,7 @@ def get_data_now(symbol):
     return df.to_html()
 
 
-def search_bar(request):
+def search_bar(request): #méthode qui retourne ce qu'on a recherché
     if request.method == "Post":
         searched = request.Post('searched')
 
@@ -280,7 +278,7 @@ def search_page(request, mot_cle):
     return render(request, 'Search_page.html', {'mot_cle': mot_cle, 'resultats': resultats})
 
 
-def calculateur(request):
+def calculateur(request): #methode à travailler plus la-dessus pour l'optimizer
     # data = recherche_par_mot_cle(mot_cle)
     # resultats = resultat_to_html(data)
     return render(request, 'Calculateur.html')

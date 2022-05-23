@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from myapp import views
 
-urlpatterns = [
+urlpatterns = [ #les path pour pouvoir naviguer dans différentes pages de notre site
     path('test', views.index, name='index'),
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
