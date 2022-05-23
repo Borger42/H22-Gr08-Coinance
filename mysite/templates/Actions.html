@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:top="http://www.w3.org/1999/xhtml" xmlns:right="http://www.w3.org/1999/xhtml"
+      xmlns:position="http://www.w3.org/1999/xhtml">
 <head>
   {% load static %}
 <!-- basic -->
@@ -91,6 +92,11 @@
                 <li> <img style="cursor:pointer" src="../static/website/images/search_icon.png" alt= "#" id="searchicon"/>
                   {% csrf_token %}
                 <input class ="from-control me-2"
+                       .formright {
+  position: absolute;
+  right: 50px;
+  top: 80px
+}
                        id="search"  type = "search" placeholder ="Rechercher des actions" aria-label ="Search" name="searched"> </li>
               </ul>
             </nav>

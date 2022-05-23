@@ -86,7 +86,7 @@ def resultat_to_html(df):
     return html
 
 
-def sma_action(symbol, interval):
+""" def sma_action(symbol, interval):
     api_key = '03QDMPDVX4N8GR4U'
     api_url = f'https://www.alphavantage.co/query?function=SMA&symbol={symbol}&interval={interval}&time_period=10&series_type=open&apikey={api_key}'
     raw_df = requests.get(api_url).json()
@@ -97,10 +97,10 @@ def sma_action(symbol, interval):
     df.index = pd.to_datetime(df.index)
     df = df.iloc[::-1]
     return df
+"""
 
 
-
-def get_plot(data, sma):
+def get_plot(data):
     figure = go.Figure(
         data=[
             go.Candlestick(
@@ -113,6 +113,7 @@ def get_plot(data, sma):
             )
         ]
     )
+    """
     figure.add_trace(
         go.Scatter(
             name="SMA",
@@ -122,6 +123,7 @@ def get_plot(data, sma):
             line_color="blue"
         )
     )
+"""
 
     graph = figure.to_html()
 
@@ -157,24 +159,24 @@ def aboutus(request):
 def ActionsDaily(request, action):
     symbole = action.upper()
     data = get_daily_data(symbole)
-    sma = sma_action(symbole, 'daily')
-    graph = get_plot(data, sma)
+   # sma = sma_action(symbole, 'daily')
+    graph = get_plot(data)
     return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
 
 
 def ActionsWeekly(request, action):
     symbole = action.upper()
     data = get_weekly_data(symbole)
-    sma = sma_action(symbole, 'weekly')
-    graph = get_plot(data, sma)
+ #   sma = sma_action(symbole, 'weekly')
+    graph = get_plot(data)
     return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
 
 
 def ActionsMonthly(request, action):
     symbole = action.upper()
     data = get_monthly_data(symbole)
-    sma = sma_action(symbole, 'monthly')
-    graph = get_plot(data, sma)
+   # sma = sma_action(symbole, 'monthly')
+    graph = get_plot(data)
     return render(request, 'Actions.html', {'symbole': symbole, 'graph': graph})
 
 
